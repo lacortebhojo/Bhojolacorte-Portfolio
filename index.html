@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B1220;
+    --panel: #121A2B;
+    --panel-line: #223047;
+    --text: #E4E9F2;
+    --muted: #7C8AA3;
+    --accent: #5EEAD4;
+    --accent-dim: #2E6F68;
+    --amber: #F0B429;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  a{ color: inherit; }
+
+  .mono{ font-family: 'JetBrains Mono', monospace; }
+
+  .wrap{
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    padding: 28px 0;
+    border-bottom: 1px solid var(--panel-line);
+    position: sticky;
+    top: 0;
+    background: rgba(11,18,32,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+
+  header .wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.05rem;
+    color: var(--accent);
+  }
+
+  nav{ display: flex; gap: 28px; }
+
+  nav a{
+    font-size: 0.92rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  nav a:hover{ color: var(--text); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 100px 0 90px;
+  }
+
+  .hero-code{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+    line-height: 1.9;
+    color: var(--muted);
+    white-space: pre-wrap;
+  }
+
+  .hero-code .key{ color: #93A3BE; }
+  .hero-code .str{ color: var(--accent); }
+  .hero-code .punc{ color: #4B5D78; }
+
+  .hero-code .cursor{
+    display: inline-block;
+    width: 9px;
+    height: 1.1em;
+    background: var(--amber);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink{
+    0%, 49%{ opacity: 1; }
+    50%, 100%{ opacity: 0; }
+  }
+
+  .hero h1{
+    margin-top: 34px;
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    max-width: 640px;
+  }
+
+  .hero p.sub{
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 1.08rem;
+    max-width: 520px;
+  }
+
+  .hero-links{
+    margin-top: 34px;
+    display: flex;
+    gap: 16px;
+  }
+
+  .btn{
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .btn.primary{
+    background: var(--accent);
+    color: #06201C;
+  }
+
+  .btn.primary:hover{ background: #7EF3E0; }
+
+  .btn.ghost{
+    border: 1px solid var(--panel-line);
+    color: var(--text);
+  }
+
+  .btn.ghost:hover{ border-color: var(--accent); color: var(--accent); }
+
+  /* ---------- Section shared ---------- */
+  section{ padding: 70px 0; }
+
+  .section-head{
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 42px;
+    border-bottom: 1px solid var(--panel-line);
+    padding-bottom: 16px;
+  }
+
+  .section-num{
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-dim);
+    font-size: 0.95rem;
+  }
+
+  .section-head h2{
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  /* ---------- Projects ---------- */
+  .project{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 36px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--panel-line);
+  }
+
+  .project:last-child{ border-bottom: none; }
+
+  .project-meta{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  .project-meta .year{ color: var(--amber); }
+
+  .project h3{
+    font-size: 1.28rem;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  .project p{
+    color: var(--muted);
+    margin-top: 12px;
+    max-width: 55ch;
+  }
+
+  .tags{
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 3px 9px;
+    border-radius: 3px;
+  }
+
+  .project-link{
+    margin-top: 18px;
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--muted);
+    padding-bottom: 2px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .project-link:hover{ color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 680px){
+    .project{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Skills strip ---------- */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 22px;
+  }
+
+  .skill-card{
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    border-radius: 4px;
+    padding: 20px;
+  }
+
+  .skill-card .k{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .skill-card .v{
+    margin-top: 8px;
+    font-size: 0.98rem;
+  }
+
+  /* ---------- Contact / footer ---------- */
+  footer{
+    padding: 70px 0 50px;
+    border-top: 1px solid var(--panel-line);
+  }
+
+  footer h2{
+    font-size: 1.7rem;
+    max-width: 480px;
+    font-weight: 600;
+  }
+
+  footer .contact-links{
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+
+  footer .contact-links a{
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--muted);
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  footer .contact-links a:hover{ color: var(--accent); border-color: var(--accent); }
+
+  footer .foot-note{
+    margin-top: 50px;
+    font-size: 0.8rem;
+    color: #4B5D78;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">~/BHOJO LACORTE</div>
+    <nav>
+      <a href="#work">ASPIRING WEB DEVELOPER</a>
+      <a href="#skills"></a>
+      <a href="#contact">09760324820</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-code" id="heroCode"></div>
+    <h1>I build things for the web, and I like showing my work.</h1>
+    <p class="sub">A collection of sites and tools I've shipped — some for clients, some just because a problem was interesting.</p>
+    <div class="hero-links">
+      <a class="btn primary" href="#work">See the work</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">01</span>
+      <h2>Selected work</h2>
+    </div>
+
+    <div class="project">
+      <div class="project-meta"><span class="year">2026</span> · OJT project</div>
+      <div>
+        <h3>WORK REQUEST SYSTEM PROJECT</h3>
+        <p>A PHP/MySQL platform built with role-based dashboards for five user types — IT Admin, IT Support, PE Admin, Department, and Requestor. Handles live status tracking, timers, materials requests, and analytics across the full request lifecycle, from submission to completion..</p>
+        <div class="tags">
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Chart.js</span>
+          <span class="tag">PHPMailer</span>
+        </div>
+        <a class="project-link" href="#">View project</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-meta"><span class="year">2025</span> ·THESIS PROJECT </div>
+      <div>
+        <h3>E-VACCINE SYSTEM </h3>
+        <p>A digital vaccination management platform for tracking immunization records, scheduling appointments, and monitoring vaccine stock — built to replace manual, paper-based tracking with a searchable, centralized system.</p>
+       <div class="tags">
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">JavaScript</span>
+        </div>
+        <a class="project-link" href="#">View project</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-meta"><span class="year">2025</span> · CLIENT WORK</div>
+      <div>
+        <h3>E-COMMERCE SYSTEM</h3>
+        <p>A catalog and storefront for a wooden furniture business — browsable product categories, item detail pages, and an inquiry/order flow designed to feel as solid and considered as the furniture itself.</p>
+        <div class="tags">
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">PHP</span>
+          <span class="tag">JavaScript</span>
+        </div>
+        <a class="project-link" href="#">View project</a>
+      </div>
+    </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">02</span>
+      <h2>Toolkit</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="k">frontend</div>
+        <div class="v">
+          <span class="tag">HTML/CSS</span>
+          <span class="tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="k">backend</div>
+        <div class="v">
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="k">tooling</div>
+        <div class="v">
+          <span class="tag">PHPMailer</span>
+          <span class="tag">Chart.js</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="k">design</div>
+        <div class="v">
+          <span class="tag">Figma</span>
+          <span class="tag">Responsive UI/UX</span>
+          <span class="tag">Photo Shop</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Canva</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Have a project in mind? I'd like to hear about it.</h2>
+    <div class="contact-links">
+      <a href="mailto:lacortebhojo@gmail.com">lacortebhojo@gmail.com</a>
+      <a href="#">github.com/your-name</a>
+      <a href="#">linkedin.com/in/your-name</a>
+    </div>
+    <div class="foot-note">built and maintained by hand, no framework required</div>
+  </div>
+</footer>
+
+<script>
+  // One-time typing animation for the hero code line — runs once on load, respects reduced motion.
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const target = document.getElementById('heroCode');
+
+  const parts = [
+    { text: 'const ', cls: 'key' },
+    { text: 'developer', cls: '' },
+    { text: ' = {', cls: 'punc' },
+    { text: '\n  name: ', cls: 'key' },
+    { text: '"BHOHO LACORTE"', cls: 'str' },
+    { text: ',\n  role: ', cls: 'key' },
+    { text: '"Web Developer"', cls: 'str' },
+    { text: '\n};', cls: 'punc' }
+  ];
+
+  function renderFull(){
+    target.innerHTML = parts.map(p => p.cls ? `<span class="${p.cls}">${p.text}</span>` : p.text).join('');
+  }
+
+  if (prefersReduced) {
+    renderFull();
+  } else {
+    let full = '';
+    parts.forEach(p => full += p.text);
+    let i = 0;
+    const speed = 22;
+
+    function typeNext(){
+      if (i > full.length) {
+        renderFull();
+        return;
+      }
+      const slice = full.slice(0, i);
+      target.innerHTML = slice.replace(/\n/g, '\n') + '<span class="cursor"></span>';
+      i++;
+      setTimeout(typeNext, speed);
+    }
+    typeNext();
+  }
+</script>
+
+</body>
+</html>
